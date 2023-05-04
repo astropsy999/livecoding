@@ -4,18 +4,12 @@
  * Home page class
  */
 
- class Home
+ class Home extends Controller
  {
     public function index()
     {
-        echo("Home View page");
+        $data['title'] = 'Home Title';
+        $this->view('home',$data);
     }
-    public function edit()
-    {
-        echo("Home Edit page");
-    }
-    public function delete($id)
-    {
-        echo("Home Delete page ".$id);
-    }
+
  }
