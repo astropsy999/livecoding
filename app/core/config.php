@@ -2,7 +2,7 @@
 /**
  * App config
  */
-define('APP_NAME', 'liveCodingUA app');
+define('APP_NAME', 'liveCodingUA');
 define('APP_DESC', 'Free and Paid Tutorials');
 
 
