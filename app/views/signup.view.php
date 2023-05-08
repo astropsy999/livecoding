@@ -64,37 +64,48 @@
                     <p class="text-center small">Введіть свої особисті дані, щоб створити обліковий запис</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Ваше Ім'я</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                  <form method="post" class="row g-3 needs-validation" novalidate>
+                    <div class="col-6">
+                      <label for="yourName" class="form-label">Ім'я</label>
+                      <input value='<?=set_value('firstname')?>' type="text" name="firstname" class="form-control" id="yourName" required1>
                       <div class="invalid-feedback">Будь ласка, введіть своє ім'я!</div>
+                    </div>
+                       <div class="col-6">
+                      <label for="yourName" class="form-label">Прізвище</label>
+                      <input value='<?=set_value('lastname')?>' type="text" name="lastname" class="form-control" id="lastName" required1>
+                      <div class="invalid-feedback">Будь ласка, введіть своє прізвище!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Ваш Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <input value='<?=set_value('email')?>' type="email" name="email" class="form-control" id="yourEmail" required1>
                       <div class="invalid-feedback">Будь ласка, введіть дійсну адресу електронної пошти!</div>
                     </div>
 
-                    <div class="col-12">
+                    <!-- <div class="col-6">
                       <label for="yourUsername" class="form-label">Ім'я користувача</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="text" name="username" class="form-control" id="yourUsername" required1>
                         <div class="invalid-feedback">Виберіть ім'я користувача.</div>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Пароль</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input value='<?=set_value('email')?>' type="password" name="password" class="form-control" id="yourPassword" required1>
+                      <div class="invalid-feedback">Будь ласка, введіть свій пароль!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Повторіть Пароль</label>
+                      <input <?=set_value('terms') ? 'checked' : ''?> type="password" name="retype_password" class="form-control" id="retype_password" required1>
                       <div class="invalid-feedback">Будь ласка, введіть свій пароль!</div>
                     </div>
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                        <input class="form-check-input" name="terms" type="checkbox" value="1" id="acceptTerms" required1>
                         <label class="form-check-label" for="acceptTerms">Я погоджуюся та приймаю <a href="#">положення та умови</a></label>
                         <div class="invalid-feedback">Ви повинні погодитися перед подачею.</div>
                       </div>
