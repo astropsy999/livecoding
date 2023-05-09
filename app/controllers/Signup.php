@@ -9,17 +9,15 @@
 
     public function index()
     {
-        // $db = new Database();
-        // $db->create_tables();
+        $data['errors'] = [];
         $user= new User();
         if($user->validate($_POST)){
-            $query = "INSERT INTO users (email, firstname, lastname, password, role, date) VALUES (:email, :firstname, :lastname, :password, :role, :date)";
 
-            $db = new Database();
-            $db->query($query, $_POST);
+            $_POST['date'] = date("Y-m-d H:m:s");
+            $user->insert($_POST);
+
         }
-
-
+        $data['errors'] = $user->errors;
         $data['title'] = 'Sign Up';
         $this->view('signup',$data);
     }

@@ -4,10 +4,16 @@
  * User page class
  */
 
- class User
+ class User extends Model
  {
-    protected $table="users";
+
     public $errors=[];
+    protected $table="users";
+
+    protected $allowedColumns=[
+        'email','firstname','lastname','password','role','date',
+    ];
+
     public function validate($data)
     {
         $this->errors = [];
@@ -22,9 +28,12 @@
             $this->errors['lastname'] = 'Прізвище обовʼязкове';
         }
 
-        if(empty($data['email']))
+        if(!filter_var(empty($data['email']), FILTER_VALIDATE_EMAIL))
         {
-            $this->errors['email'] = 'Email обовʼязковий';
+            $this->errors['email'] = 'Користувач з таким email вже існує';
+        }else if($this->where(['email'=>$data['email']]))
+        {
+            $this->errors['email'] = 'Такий email вже існує';
         }
 
         if(empty($data['password']))
@@ -32,7 +41,7 @@
             $this->errors['password'] = 'Пароль обовʼязковий';
         }
 
-        if($data['password'] !== $data['retype_password'])
+        if(empty($data['password']) !== empty($data['retype_password']))
         {
             $this->errors['password'] = 'Паролі не співпадають';
         }

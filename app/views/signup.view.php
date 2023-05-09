@@ -78,8 +78,11 @@
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Ваш Email</label>
-                      <input value='<?=set_value('email')?>' type="email" name="email" class="form-control" id="yourEmail" required1>
+                      <input value='<?=set_value('email')?>' type="email" name="email" class="form-control <?=!empty($errors['email']) ? 'border-danger':''?>" id="yourEmail" required1>
                       <div class="invalid-feedback">Будь ласка, введіть дійсну адресу електронної пошти!</div>
+                      <?php if(!empty($errors['email'])):?>
+                      <small class="text-danger"><?=$errors['email']?></small>
+                      <?php endif;?>
                     </div>
 
                     <!-- <div class="col-6">
