@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Реєстрація - liveCodingUA</title>
+  <title>Реєстрація - <?=APP_NAME?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -67,13 +67,19 @@
                   <form method="post" class="row g-3 needs-validation" novalidate>
                     <div class="col-6">
                       <label for="yourName" class="form-label">Ім'я</label>
-                      <input value='<?=set_value('firstname')?>' type="text" name="firstname" class="form-control" id="yourName" required1>
+                      <input value='<?=set_value('firstname')?>' type="text" name="firstname" class="form-control <?=!empty($errors['firstname']) ? 'border-danger':''?>" id="yourName" required1>
                       <div class="invalid-feedback">Будь ласка, введіть своє ім'я!</div>
+                       <?php if(!empty($errors['firstname'])):?>
+                        <small class="text-danger"><?=$errors['firstname']?></small>
+                      <?php endif;?>
                     </div>
-                       <div class="col-6">
+                      <div class="col-6">
                       <label for="yourName" class="form-label">Прізвище</label>
-                      <input value='<?=set_value('lastname')?>' type="text" name="lastname" class="form-control" id="lastName" required1>
+                      <input value='<?=set_value('lastname')?>' type="text" name="lastname" class="form-control <?=!empty($errors['lastname']) ? 'border-danger':''?>" id="lastName" required1>
                       <div class="invalid-feedback">Будь ласка, введіть своє прізвище!</div>
+                       <?php if(!empty($errors['lastname'])):?>
+                        <small class="text-danger"><?=$errors['lastname']?></small>
+                      <?php endif;?>
                     </div>
 
                     <div class="col-12">
@@ -81,7 +87,7 @@
                       <input value='<?=set_value('email')?>' type="email" name="email" class="form-control <?=!empty($errors['email']) ? 'border-danger':''?>" id="yourEmail" required1>
                       <div class="invalid-feedback">Будь ласка, введіть дійсну адресу електронної пошти!</div>
                       <?php if(!empty($errors['email'])):?>
-                      <small class="text-danger"><?=$errors['email']?></small>
+                        <small class="text-danger"><?=$errors['email']?></small>
                       <?php endif;?>
                     </div>
 
@@ -96,14 +102,21 @@
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Пароль</label>
-                      <input value='<?=set_value('email')?>' type="password" name="password" class="form-control" id="yourPassword" required1>
+                      <input value='<?=set_value('password')?>' type="password" name="password" class="form-control <?=!empty($errors['password']) ? 'border-danger':''?>" id="yourPassword" required1>
                       <div class="invalid-feedback">Будь ласка, введіть свій пароль!</div>
+                      <?php if(!empty($errors['password'])):?>
+                        <small class="text-danger"><?=$errors['password']?></small>
+                      <?php endif;?>
                     </div>
+
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Повторіть Пароль</label>
-                      <input <?=set_value('terms') ? 'checked' : ''?> type="password" name="retype_password" class="form-control" id="retype_password" required1>
+                      <input <?=set_value('terms') ? 'checked' : ''?> type="password" name="retype_password" class="form-control <?=!empty($errors['email']) ? 'border-danger':''?>" id="retype_password" required1>
                       <div class="invalid-feedback">Будь ласка, введіть свій пароль!</div>
+                       <?php if(!empty($errors['password'])):?>
+                        <small class="text-danger"><?=$errors['password']?></small>
+                      <?php endif;?>
                     </div>
 
                     <div class="col-12">
@@ -111,6 +124,9 @@
                         <input class="form-check-input" name="terms" type="checkbox" value="1" id="acceptTerms" required1>
                         <label class="form-check-label" for="acceptTerms">Я погоджуюся та приймаю <a href="#">положення та умови</a></label>
                         <div class="invalid-feedback">Ви повинні погодитися перед подачею.</div>
+                         <?php if(!empty($errors['terms'])):?>
+                        <small class="text-danger"><?=$errors['terms']?></small>
+                      <?php endif;?>
                       </div>
                     </div>
                     <div class="col-12">

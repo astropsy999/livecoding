@@ -11,11 +11,17 @@
     {
         $data['errors'] = [];
         $user= new User();
-        if($user->validate($_POST)){
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            if($user->validate($_POST)){
 
-            $_POST['date'] = date("Y-m-d H:m:s");
-            $user->insert($_POST);
+                $_POST['date'] = date("Y-m-d H:m:s");
+                $user->insert($_POST);
 
+                message('Ваш обліковий запис успішно створено. Будь ласка увійдіть');
+                redirect('login');
+
+
+            }
         }
         $data['errors'] = $user->errors;
         $data['title'] = 'Sign Up';

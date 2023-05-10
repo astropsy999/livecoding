@@ -63,7 +63,9 @@
                     <h5 class="card-title text-center pb-0 fs-4">Увійдіть до свого облікового запису</h5>
                     <p class="text-center small">Введіть свій логін та пароль для входу</p>
                   </div>
-
+                  <?php if(message()):?>
+                    <div class="alert alert-success text-center"><?=message('', true)?></div>
+                  <?php endif;?>
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">

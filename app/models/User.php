@@ -28,7 +28,7 @@
             $this->errors['lastname'] = 'Прізвище обовʼязкове';
         }
 
-        if(!filter_var(empty($data['email']), FILTER_VALIDATE_EMAIL))
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL))
         {
             $this->errors['email'] = 'Користувач з таким email вже існує';
         }else if($this->where(['email'=>$data['email']]))
@@ -41,7 +41,7 @@
             $this->errors['password'] = 'Пароль обовʼязковий';
         }
 
-        if(empty($data['password']) !== empty($data['retype_password']))
+        if($data['password'] !== $data['retype_password'])
         {
             $this->errors['password'] = 'Паролі не співпадають';
         }
