@@ -15,6 +15,7 @@
             if($user->validate($_POST)){
 
                 $_POST['date'] = date("Y-m-d H:m:s");
+                $_POST['role'] = 'user';
                 $user->insert($_POST);
 
                 message('Ваш обліковий запис успішно створено. Будь ласка увійдіть');
