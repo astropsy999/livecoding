@@ -16,6 +16,7 @@
 
                 $_POST['date'] = date("Y-m-d H:m:s");
                 $_POST['role'] = 'user';
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $user->insert($_POST);
 
                 message('Ваш обліковий запис успішно створено. Будь ласка увійдіть');

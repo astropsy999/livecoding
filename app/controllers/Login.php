@@ -19,9 +19,10 @@
             ]);
 
             if($row) {
-                if($row->password === $_POST['password']) {
+                if(password_verify($_POST['password'], $row->password)) {
                     //authenticate
-                    $_SESSION['USER_DATA'] = $row;
+                    // $_SESSION['USER_DATA'] = $row;
+                    Auth::authenticate($row);
                     redirect('home');
 
                 }
