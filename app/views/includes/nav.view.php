@@ -39,11 +39,18 @@
             <li><a href="<?=ROOT?>/login">Увійти</a></li>
             <li><a href="<?=ROOT?>/signup">Реєстрація</a></li>
           <?php else:?>
-            <li><a href="<?=ROOT?>/logout">Вийти</a></li>
+
+            <li class="dropdown"><a href="category"><span>Hi, <?=Auth::getFirstname()?></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="<?=ROOT?>/admin">Панель</a></li>
+              <li><a href="#">Профіль</a></li>
+              <li><a href="#">Налаштування</a></li>
+              <li><a href="<?=ROOT?>/logout">Вийти</a></li>
+            </ul>
+          </li>
           <?php endif;?>
         </ul>
       </nav><!-- .navbar -->
-
       <div class="position-relative">
         <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
         <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
