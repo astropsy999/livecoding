@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="<?=ROOT?>/zenblog/assets/img/favicon.png" rel="icon">
-  <link href="<?=ROOT?>/zenblog/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?=ROOT?>/assets/images/logo.png" rel="icon">
+  <link href="<?=ROOT?>/assets/images/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

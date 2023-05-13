@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="<?=ROOT?>/niceadmin/assets/img/favicon.png" rel="icon">
-  <link href="<?=ROOT?>/niceadmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?=ROOT?>/assets/images/logo.png" rel="icon">
+  <link href="<?=ROOT?>/assets/images/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
