@@ -5,9 +5,8 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="<?=ROOT?>" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="<?=ROOT?>/zenblog/assets/img/logo.png" alt=""> -->
-        <h1><?=APP_NAME?></h1>
+       <img src="<?=ROOT?>/assets/images/logo.png" alt="<?=APP_NAME?>">
+        <span class="d-none d-lg-block"><?=APP_NAME?></span>
       </a>
 
       <nav id="navbar" class="navbar">

@@ -280,9 +280,35 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+
+
       <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>/admin/profile">
+          <i class="bi bi-person"></i>
+          <span>Профіль</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>/admin/courses">
+          <i class="bi bi-film"></i>
+          <span>Курси</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+ <li class="nav-heading">Потрапити</li>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>">
+          <i class="bi bi-globe"></i>
+          <span>На головну</span>
+        </a>
+      </li><!-- End Main Page Nav -->
+
+
+
+              <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Таблиці</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -298,17 +324,8 @@
         </ul>
       </li><!-- End Tables Nav -->
 
-      <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="<?=ROOT?>/admin/profile">
-          <i class="bi bi-person"></i>
-          <span>Профіль</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-
 
     </ul>
 
   </aside><!-- End Sidebar-->
+  <main id="main" class="main">
