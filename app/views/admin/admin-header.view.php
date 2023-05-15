@@ -291,9 +291,30 @@
         <li class="nav-item">
         <a class="nav-link collapsed" href="<?=ROOT?>/admin/courses">
           <i class="bi bi-film"></i>
-          <span>Курси</span>
+          <span>Мої курси</span>
         </a>
       </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>/admin/lessons">
+          <i class="bi bi-person-video3"></i>
+          <span>Моє навчання</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>/admin/lessons">
+          <i class="bi bi-hourglass-split"></i>
+          <span>Історія навчання</span>
+        </a>
+      </li><!-- End End Main Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<?=ROOT?>/admin/lessons">
+          <i class="bi bi-cash-coin"></i>
+          <span>Продажі</span>
+        </a>
+      </li><!-- End End Main Page Nav -->
 
  <li class="nav-heading">Потрапити</li>
 
