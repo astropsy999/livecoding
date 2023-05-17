@@ -9,7 +9,10 @@
 
     public function index()
     {
-
+        if(!Auth::logged_in()){
+            message('Будь ласка увійдіть, щоб мати доступ до панелі адміністратора');
+            redirect('login');
+        }
         $data['title'] = 'Dashboard';
         $this->view('admin/dashboard',$data);
     }
@@ -17,6 +20,11 @@
     public function profile($id=null)
     {
         $id = $id ?? Auth::getId();
+
+        if(!Auth::logged_in()){
+            message('Будь ласка увійдіть, щоб мати доступ до панелі адміністратора');
+            redirect('login');
+        }
 
         $user = new User();
         $data['row'] = $user->first(['id'=>$id]);

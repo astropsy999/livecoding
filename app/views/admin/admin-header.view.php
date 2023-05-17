@@ -75,8 +75,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+             Ви маєте 4 нових повідомлення
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Дивитись все</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -226,7 +226,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>Мій профіль</span>
               </a>
             </li>
             <li>
@@ -236,7 +236,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
+                <span>Налаштування аккаунта</span>
               </a>
             </li>
             <li>
@@ -254,9 +254,9 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="<?=ROOT?>/logout">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Вийти</span>
               </a>
             </li>
 
