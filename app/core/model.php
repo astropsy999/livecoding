@@ -24,9 +24,37 @@ class Model extends Database
 
 		$keys = array_keys($data);
 
-		$query = "insert into " . $this->table;
+		$query = "INSERT into " . $this->table;
 		$query .= " (".implode(",", $keys) .") values (:".implode(",:", $keys) .")";
 
+		$this->query($query,$data);
+
+	}
+
+	public function update($id, $data)
+	{
+
+		//remove unwanted columns
+		if(!empty($this->allowedColumns))
+		{
+			foreach ($data as $key => $value) {
+				if(!in_array($key, $this->allowedColumns))
+				{
+					unset($data[$key]);
+				}
+			}
+		}
+
+		$keys = array_keys($data);
+
+		$query = "UPDATE ". $this->table ." SET ";
+		foreach($keys as $key) {
+			$query .= $key ."=:" .$key . ",";
+		}
+		$query = trim($query, ",");
+		$query.= " WHERE id= :id";
+
+		$data['id'] = $id;
 		$this->query($query,$data);
 
 	}

@@ -11,7 +11,20 @@
     protected $table="users";
 
     protected $allowedColumns=[
-        'email','firstname','lastname','password','role','date',
+        'email',
+        'firstname',
+        'lastname',
+        'password',
+        'role',
+        'date',
+        'about',
+        'company',
+        'job',
+        'country',
+        'address',
+        'phone',
+        'slug',
+        'image'
     ];
 
     public function validate($data)
