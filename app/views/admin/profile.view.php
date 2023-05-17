@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="<?=ROOT?>/niceadmin/assets/img/profile-img.jpg" alt="Профіль" class="rounded-circle">
+              <img src="<?=ROOT?>/niceadmin/assets/img/profile-img.jpg" alt="Профіль" class="rounded-circle" style="width: 200px; max-width:200px; height:200px; object-fit: cover;">
               <h2><?=esc($row->firstname)?> <?=esc($row->lastname)?></h2>
               <h3><?=esc($row->role)?></h3>
               <div class="social-links mt-2">
@@ -109,11 +109,14 @@
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Фото профіля</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="<?=ROOT?>/niceadmin/assets/img/profile-img.jpg" alt="Profile">
+                        <div class="d-flex">
+                          <img class="js-image-preview" src="<?=ROOT?>/niceadmin/assets/img/profile-img.jpg" alt="Profile">
+                          <div class="js-filename m-2">Вибраний файл: None</div>
+                        </div>
                         <div class="pt-2">
                           <label href="#" class="btn btn-primary btn-sm" title="Завантажити нове зображення">
                             <i class="text-white bi bi-upload"></i>
-                            <input type="file" name="image" style="display: none;">
+                            <input onchange="load_image(this.files[0])" type="file" name="image" style="display: none;">
                           </label>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
@@ -213,9 +216,9 @@
 
                     <div class="text-center">
                       <a href="<?ROOT?>/admin">
-                      <button type="submit" class="btn btn-primary ">Назад</button>
+                      <button type="submit" class="btn btn-primary float-start">Назад</button>
                       </a>
-                      <button type="submit" class="btn btn-danger float-end">Зберегти зміни</button>
+                      <button type="submit" class="btn btn-success float-end">Зберегти зміни</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -308,5 +311,18 @@
             Цей профайл не знайдено!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+
     <?php endif;?>
+       <script>
+          function load_image(file){
+            document.querySelector('.js-filename').innerHTML = "Вибраний файл: " + file.name;
+            var myLink = window.URL.createObjectURL(file);
+            if(myLink) {
+              document.querySelector('.js-image-preview').src = myLink;
+            }
+
+
+
+          }
+        </script>
 <?php $this->view('admin/admin-footer', $data);?>
