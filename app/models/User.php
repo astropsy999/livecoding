@@ -43,14 +43,22 @@
     {
         $this->errors = [];
 
-        if(empty($data['firstname']))
+         if(empty($data['firstname']))
         {
             $this->errors['firstname'] = 'Імʼя обовʼязкове';
+        }else
+        if(!preg_match("/^[a-zA-Z]$/", trim($data['firstname'])))
+        {
+            $this->errors['firstname'] = 'Імʼя може складатися тільки із літер без пробілів';
         }
 
         if(empty($data['lastname']))
         {
             $this->errors['lastname'] = 'Прізвище обовʼязкове';
+        }else
+        if(!preg_match("/^[a-zA-Z]$/", trim($data['lastname'])))
+        {
+            $this->errors['lastname'] = 'Прізвище може складатися тільки із літер без пробілів';
         }
 
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL))
@@ -91,11 +99,19 @@
         if(empty($data['firstname']))
         {
             $this->errors['firstname'] = 'Імʼя обовʼязкове';
+        }else
+        if(!preg_match("/^[a-zA-Z]$/", trim($data['firstname'])))
+        {
+            $this->errors['firstname'] = 'Імʼя може складатися тільки із літер без пробілів';
         }
 
         if(empty($data['lastname']))
         {
             $this->errors['lastname'] = 'Прізвище обовʼязкове';
+        }else
+        if(!preg_match("/^[a-zA-Z]$/", trim($data['lastname'])))
+        {
+            $this->errors['lastname'] = 'Прізвище може складатися тільки із літер без пробілів';
         }
 
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL))
@@ -104,6 +120,12 @@
         }else if($this->where(['email'=>$data['email']]))
         {
             $this->errors['email'] = 'Такий email вже існує';
+        }
+
+        if(!preg_match("/^[0-9]$/", trim($data['phone']))) {
+            if(filter_var($data['phone'], FILTER_VALIDATE_URL)){
+                $this->errors['phone'] = 'Номер телефону може містити тільки цифри';
+            }
         }
 
         if(!empty($data['facebook_link'])) {

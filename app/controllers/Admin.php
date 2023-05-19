@@ -46,7 +46,7 @@ public function profile($id = null)
         file_put_contents($folder . "index.php", "<?php");
         file_put_contents("uploads/index.php", "<?php");
     }
-    if($user->edit_validate($data)){
+    if($user->edit_validate($_POST)){
     $allowed = ['image/jpeg'];
 
     // Обработка данных, отправленных методом POST
