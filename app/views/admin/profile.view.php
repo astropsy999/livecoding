@@ -41,19 +41,19 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Огляд</button>
+                  <button onclick="set_tab(this.getAttribute('data-bs-target'))" class="nav-link active" id="profile-overview-tab" data-bs-toggle="tab" data-bs-target="#profile-overview">Огляд</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Редагувати</button>
+                  <button onclick="set_tab(this.getAttribute('data-bs-target'))" class="nav-link" id="profile-edit-tab" data-bs-toggle="tab" data-bs-target="#profile-edit">Редагувати</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Налаштування</button>
+                  <button onclick="set_tab(this.getAttribute('data-bs-target'))" class="nav-link" id="profile-settings-tab" data-bs-toggle="tab" data-bs-target="#profile-settings">Налаштування</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Змінити пароль</button>
+                  <button onclick="set_tab(this.getAttribute('data-bs-target'))" class="nav-link" id="profile-change-password-tab" data-bs-toggle="tab" data-bs-target="#profile-change-password">Змінити пароль</button>
                 </li>
 
               </ul>
@@ -326,15 +326,33 @@
 
     <?php endif;?>
        <script>
+          let tab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : "#profile-overview";
+          function show_tab(tab_name){
+            const someTabTriggerEl = document.querySelector(tab_name+"-tab")
+            const tabShow = new bootstrap.Tab(someTabTriggerEl)
+
+            tabShow.show();
+          }
+
+          function set_tab(tab_name) {
+            tab = tab_name;
+
+            sessionStorage.setItem("tab", tab_name)
+          }
+
           function load_image(file){
             document.querySelector('.js-filename').innerHTML = "Вибраний файл: " + file.name;
             var myLink = window.URL.createObjectURL(file);
             if(myLink) {
               document.querySelector('.js-image-preview').src = myLink;
             }
-
-
-
           }
+
+           window.onload = function () {
+
+            show_tab(tab)
+          }
+
+
         </script>
 <?php $this->view('admin/admin-footer', $data);?>
