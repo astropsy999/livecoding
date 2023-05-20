@@ -58,7 +58,7 @@ public function profile($id = null)
                 if (in_array($_FILES['image']['type'], $allowed)) {
                     $destination = $folder . time() . $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-
+                    resize_image($destination);
                     $_POST['image'] = $destination;
                     // Удаляем файл если он уже существует
                     if(file_exists($row->image)) {
