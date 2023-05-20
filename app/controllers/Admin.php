@@ -46,7 +46,7 @@ public function profile($id = null)
         file_put_contents($folder . "index.php", "<?php");
         file_put_contents("uploads/index.php", "<?php");
     }
-    if($user->edit_validate($_POST)){
+    if($user->edit_validate($_POST, $id)){
     $allowed = ['image/jpeg'];
 
     // Обработка данных, отправленных методом POST
@@ -74,7 +74,7 @@ public function profile($id = null)
 
         // Обновление данных пользователя
         $user->update($id, $_POST);
-
+        message('Профіль вдало збережено');
         redirect('admin/profile/' . $id);
         }
 
