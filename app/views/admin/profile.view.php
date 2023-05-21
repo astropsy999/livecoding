@@ -116,7 +116,7 @@
                         <div class="pt-2">
                           <label href="#" class="btn btn-primary btn-sm" title="Завантажити нове зображення">
                             <i class="text-white bi bi-upload"></i>
-                            <input onchange="load_image(this.files[0])" type="file" name="image" style="display: none;">
+                            <input class="js-profile-image-input" onchange="load_image(this.files[0])" type="file" name="image" style="display: none;">
                           </label>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
@@ -238,11 +238,14 @@
                       <?php endif;?>
                     </div>
 
+                    <div class="js-progress-bar progress my-4 hide">
+                      <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                     <div class="text-center">
                       <a href="<?ROOT?>/admin">
                       <button type="submit" class="btn btn-primary float-start">Назад</button>
                       </a>
-                      <button type="submit" class="btn btn-success float-end">Зберегти зміни</button>
+                      <button type="button" onclick="save_profile()" class="btn btn-success float-end">Зберегти зміни</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -284,7 +287,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">Зберегти зміни</button>
                     </div>
                   </form><!-- End settings Form -->
 
@@ -360,9 +363,43 @@
             }
           }
 
-           window.onload = function () {
+          window.onload = function () {
 
             show_tab(tab)
+          }
+
+          //upload data
+
+          function save_profile() {
+            let image = document.querySelector('.js-profile-image-input')
+            send_data({
+              pic: image.files[0]
+            });
+          }
+
+          function send_data(obj) {
+            let progressBar = document.querySelector('.js-progress-bar')
+            progressBar.children[0].style.width = "0%"
+            progressBar.classList.remove('hide')
+            let myForm = new FormData()
+
+            for (key in obj) {
+              myForm.append(key, obj[key])
+            }
+            let ajax = new XMLHttpRequest();
+            ajax.addEventListener('readystatechange', function(){
+              if(ajax.readyState == 4) {
+
+              }
+            })
+            ajax.upload.addEventListener('progress', function(e){
+              let percentage = Math.round((e.loaded / e.total) * 100)
+
+              progressBar.children[0].style.width = percentage + "%"
+              progressBar.children[0].style.innerHTML = "Збережено.. " + percentage + "%"
+            })
+            ajax.open('POST', '', true);
+            ajax.send(myForm);
           }
 
 

@@ -113,19 +113,20 @@
         // {
         //     $this->errors['lastname'] = 'Прізвище може складатися тільки із літер без пробілів';
         // }
+        if(!empty($data['email'])) {
+            if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL))
+            {
+                $this->errors['email'] = 'Користувач з таким email вже існує';
+            }else if($result = $this->where(['email'=>$data['email']]))
+            {
+                foreach($result as $result) {
+                    if($id != $result->id) {
 
-        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL))
-        {
-            $this->errors['email'] = 'Користувач з таким email вже існує';
-        }else if($result = $this->where(['email'=>$data['email']]))
-        {
-            foreach($result as $result) {
-                if($id != $result->id) {
-
-                    $this->errors['email'] = 'Такий email вже існує';
+                        $this->errors['email'] = 'Такий email вже існує';
+                    }
                 }
-            }
 
+            }
         }
 
         if(!empty($data['phone'])){
