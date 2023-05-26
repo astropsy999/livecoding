@@ -243,7 +243,7 @@
                     </div>
                     <div class="text-center">
                       <a href="<?ROOT?>/admin">
-                      <button type="submit" class="btn btn-primary float-start">Назад</button>
+                      <button type="button" class="btn btn-primary float-start">Назад</button>
                       </a>
                       <button type="button" onclick="save_profile()" class="btn btn-success float-end">Зберегти зміни</button>
                     </div>
@@ -341,10 +341,10 @@
 
     <?php endif;?>
        <script>
-          let tab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : "#profile-overview";
+          var tab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : "#profile-overview";
           function show_tab(tab_name){
-            const someTabTriggerEl = document.querySelector(tab_name+"-tab")
-            const tabShow = new bootstrap.Tab(someTabTriggerEl)
+            var someTabTriggerEl = document.querySelector(tab_name+"-tab")
+            var tabShow = new bootstrap.Tab(someTabTriggerEl)
 
             tabShow.show();
           }
@@ -371,29 +371,48 @@
           //upload data
 
           function save_profile() {
-            let image = document.querySelector('.js-profile-image-input')
+
+            var image = document.querySelector('.js-profile-image-input');
+            var allowed = ['jpeg','jpg', 'png'];
+
+            if(typeof image.files[0] == 'object') {
+              var ext = image.files[0].name.split(".").pop();
+            }
+
+            if(!allowed.includes(ext.toLowerCase())) {
+              alert("В якості зображення профілю підтримуються тільки файли типів:" + allowed.toString(", "));
+              return;
+            }
+
             send_data({
               pic: image.files[0]
             });
           }
 
-          function send_data(obj) {
-            let progressBar = document.querySelector('.js-progress-bar')
+          function send_data(obj, progbar = "js-progress-bar") {
+            var progressBar = document.querySelector('.'+progbar);
             progressBar.children[0].style.width = "0%"
             progressBar.classList.remove('hide')
-            let myForm = new FormData()
+            var myForm = new FormData()
 
             for (key in obj) {
               myForm.append(key, obj[key])
             }
-            let ajax = new XMLHttpRequest();
+
+            var ajax = new XMLHttpRequest();
+
             ajax.addEventListener('readystatechange', function(){
               if(ajax.readyState == 4) {
-
+                if(ajax.status == 200) {
+                  alert('Завантажено');
+                  window.location.reload();
+                }else{
+                  alert("Сталася помилка!")
+                }
               }
             })
             ajax.upload.addEventListener('progress', function(e){
-              let percentage = Math.round((e.loaded / e.total) * 100)
+              var percentage = Math.round((e.loaded / e.total) * 100)
 
               progressBar.children[0].style.width = percentage + "%"
               progressBar.children[0].style.innerHTML = "Збережено.. " + percentage + "%"
