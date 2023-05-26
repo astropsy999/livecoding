@@ -39,7 +39,7 @@ public function profile($id = null)
     $data['row'] = $row = $user->first(['id' => $id]);
 
      // Обработка данных, отправленных методом POST
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && $row && false) {
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
 
         $folder = 'uploads/images/';
 
@@ -76,10 +76,19 @@ public function profile($id = null)
 
         // Обновление данных пользователя
         $user->update($id, $_POST);
-        message('Профіль вдало збережено');
-        redirect('admin/profile/' . $id);
+
+        // message('Профіль вдало збережено');
+        // redirect('admin/profile/' . $id);
+        }
+         if(empty($user->errors)) {
+            $arr['message'] = 'Профіль вдало збережено';
+        }else {
+            $arr['message'] = 'Будь ласка виправте помилку';
+            $arr['errors'] = $user->errors;
         }
 
+        echo json_encode($arr);
+        die;
     }
 
     $data['title'] = 'Profile';

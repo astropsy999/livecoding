@@ -421,8 +421,9 @@
             ajax.addEventListener('readystatechange', function(){
               if(ajax.readyState == 4) {
                 if(ajax.status == 200) {
-                  alert('Завантажено');
-                  window.location.reload();
+                  // alert('Завантажено');
+                  // window.location.reload();
+                  handle_result(ajax.responseText);
                 }else{
                   alert("Сталася помилка!")
                 }
@@ -437,7 +438,16 @@
             ajax.open('POST', '', true);
             ajax.send(myForm);
           }
-
+          function handle_result(result){
+            var obj = JSON.parse(result);
+            if(typeof obj == 'object') {
+              if(typeof obj.errors == 'object') {
+                alert(obj.errors)
+            }else {
+              alert('Дані вдало збережено')
+            }
+            }
+          }
 
         </script>
 <?php $this->view('admin/admin-footer', $data);?>
