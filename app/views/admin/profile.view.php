@@ -126,7 +126,7 @@
                     <div class="row mb-3">
                       <label for="firstname" class="col-md-4 col-lg-3 col-form-label">Імʼя</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="firstname" type="text" class="form-control" id="fullName" value="<?=set_value('firstname', $row->firstname)?>">
+                        <input name="firstname" type="text" class="form-control" id="fullName" value="<?=set_value('firstname', $row->firstname)?>" required>
                       </div>
                        <?php if(!empty($errors['firstname'])):?>
                           <small class="text-danger"><?=$errors['firstname']?></small>
@@ -136,7 +136,7 @@
                      <div class="row mb-3">
                       <label for="lastname" class="col-md-4 col-lg-3 col-form-label">Прізвище</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="lastname" type="text" class="form-control" id="fullName" value="<?=set_value('lastname', $row->lastname)?>">
+                        <input name="lastname" type="text" class="form-control" id="fullName" value="<?=set_value('lastname', $row->lastname)?>" required>
                       </div>
                        <?php if(!empty($errors['lastname'])):?>
                           <small class="text-danger"><?=$errors['lastname']?></small>
@@ -191,7 +191,7 @@
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="<?=set_value('email', $row->email)?>">
+                        <input name="email" type="email" class="form-control" id="Email" value="<?=set_value('email', $row->email)?>" required>
                       </div>
                        <?php if(!empty($errors['email'])):?>
                           <small class="text-danger"><?=$errors['email']?></small>
@@ -239,13 +239,13 @@
                     </div>
 
                     <div class="js-progress-bar progress my-4 hide">
-                      <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="text-center">
                       <a href="<?ROOT?>/admin">
                       <button type="button" class="btn btn-primary float-start">Назад</button>
                       </a>
-                      <button type="button" onclick="save_profile()" class="btn btn-success float-end">Зберегти зміни</button>
+                      <button type="button" onclick="save_profile(event)" type="submit" class="btn btn-success float-end">Зберегти зміни</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -370,23 +370,40 @@
 
           //upload data
 
-          function save_profile() {
+          function save_profile(e) {
 
-            var image = document.querySelector('.js-profile-image-input');
-            var allowed = ['jpeg','jpg', 'png'];
+            var form = e.currentTarget.form
+            var inputs = form.querySelectorAll('input, textarea')
+            var obj = {}
+            var image_added = false;
 
-            if(typeof image.files[0] == 'object') {
-              var ext = image.files[0].name.split(".").pop();
+            for(var i=0 ; i<inputs.length; i++) {
+              var key = inputs[i].name
+              if(key == 'image') {
+                if(typeof inputs[i].files[0] == 'object') {
+                 obj[key] = inputs[i].files[0]
+                 image_added = true;
+                 }
+              }else {
+              obj[key] = inputs[i].value
+              }
+
             }
 
-            if(!allowed.includes(ext.toLowerCase())) {
-              alert("В якості зображення профілю підтримуються тільки файли типів:" + allowed.toString(", "));
-              return;
+            if(image_added) {
+              var allowed = ['jpeg','jpg', 'png'];
+
+              if(typeof obj.image == 'object') {
+                var ext = obj.image.name.split(".").pop();
+              }
+
+              if(!allowed.includes(ext.toLowerCase())) {
+                alert("В якості зображення профілю підтримуються тільки файли типів:" + allowed.toString(", "));
+                return;
+              }
             }
 
-            send_data({
-              pic: image.files[0]
-            });
+            send_data(obj);
           }
 
           function send_data(obj, progbar = "js-progress-bar") {

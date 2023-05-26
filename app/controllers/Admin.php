@@ -38,19 +38,21 @@ public function profile($id = null)
     $user = new User();
     $data['row'] = $row = $user->first(['id' => $id]);
 
-    $folder = 'uploads/images/';
+     // Обработка данных, отправленных методом POST
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && $row && false) {
 
-    // Создаем папку, если она не существует
-    if (!file_exists($folder)) {
-        mkdir($folder, 0777, true);
-        file_put_contents($folder . "index.php", "<?php");
-        file_put_contents("uploads/index.php", "<?php");
-    }
-    if($user->edit_validate($_POST, $id)){
-    $allowed = ['image/jpeg'];
+        $folder = 'uploads/images/';
 
-    // Обработка данных, отправленных методом POST
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && $row) {
+        // Создаем папку, если она не существует
+        if (!file_exists($folder)) {
+            mkdir($folder, 0777, true);
+            file_put_contents($folder . "index.php", "<?php");
+            file_put_contents("uploads/index.php", "<?php");
+        }
+        if($user->edit_validate($_POST, $id)){
+        $allowed = ['image/jpeg'];
+
+
 
         // Загрузка изображения, если оно присутствует в запросе
         if (!empty($_FILES['image']['name'])) {
