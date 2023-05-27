@@ -118,6 +118,11 @@
                             <i class="text-white bi bi-upload"></i>
                             <input class="js-profile-image-input" onchange="load_image(this.files[0])" type="file" name="image" style="display: none;">
                           </label>
+                          <?php if(!empty($errors['image'])):?>
+                          <small class="js-error-image text-danger"><?=$errors['image']?></small>
+                        <?php endif;?>
+                          <small class="js-error-image text-danger"></small>
+
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
@@ -129,8 +134,10 @@
                         <input name="firstname" type="text" class="form-control" id="fullName" value="<?=set_value('firstname', $row->firstname)?>" required>
                       </div>
                        <?php if(!empty($errors['firstname'])):?>
-                          <small class="text-danger"><?=$errors['firstname']?></small>
+                          <small class="js-error-firstname text-danger"><?=$errors['firstname']?></small>
                         <?php endif;?>
+                          <small class="js-error-firstname text-danger"></small>
+
                     </div>
 
                      <div class="row mb-3">
@@ -139,8 +146,10 @@
                         <input name="lastname" type="text" class="form-control" id="fullName" value="<?=set_value('lastname', $row->lastname)?>" required>
                       </div>
                        <?php if(!empty($errors['lastname'])):?>
-                          <small class="text-danger"><?=$errors['lastname']?></small>
+                          <small class="js-error-lastname text-danger"><?=$errors['lastname']?></small>
                         <?php endif;?>
+                          <small class="js-error-lastname text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -184,8 +193,10 @@
                         <input name="phone" type="text" class="form-control" id="Phone" value="<?=set_value('phone', $row->phone)?>">
                       </div>
                        <?php if(!empty($errors['phone'])):?>
-                          <small class="text-danger"><?=$errors['phone']?></small>
+                          <small class="js-error-phone text-danger"><?=$errors['phone']?></small>
                         <?php endif;?>
+                          <small class="js-error-phone text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -194,8 +205,10 @@
                         <input name="email" type="email" class="form-control" id="Email" value="<?=set_value('email', $row->email)?>" required>
                       </div>
                        <?php if(!empty($errors['email'])):?>
-                          <small class="text-danger"><?=$errors['email']?></small>
+                          <small class="js-error-email text-danger"><?=$errors['email']?></small>
                         <?php endif;?>
+                          <small class="js-error-email text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -204,8 +217,10 @@
                         <input name="twitter_link" type="text" class="form-control" id="Twitter" value="<?=set_value('twitter_link', $row->twitter_link)?>">
                       </div>
                         <?php if(!empty($errors['twitter_link'])):?>
-                          <small class="text-danger"><?=$errors['twitter_link']?></small>
+                          <small class="js-error-twitter_link text-danger"><?=$errors['twitter_link']?></small>
                         <?php endif;?>
+                          <small class="js-error-twitter_link text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -214,8 +229,10 @@
                         <input name="facebook_link" type="text" class="form-control" id="Facebook" value="<?=set_value('facebook_link', $row->facebook_link)?>">
                       </div>
                       <?php if(!empty($errors['facebook_link'])):?>
-                        <small class="text-danger"><?=$errors['facebook_link']?></small>
+                        <small class="js-error-facebook_link text-danger"><?=$errors['facebook_link']?></small>
                       <?php endif;?>
+                        <small class="js-error-facebook_link text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -224,8 +241,10 @@
                         <input name="instagram_link" type="text" class="form-control" id="Instagram" value="<?=set_value('instagram_link', $row->instagram_link)?>">
                       </div>
                         <?php if(!empty($errors['instagram_link'])):?>
-                          <small class="text-danger"><?=$errors['instagram_link']?></small>
+                          <small class="js-error-instagram_link text-danger"><?=$errors['instagram_link']?></small>
                         <?php endif;?>
+                          <small class="js-error-instagram_link text-danger"></small>
+
                     </div>
 
                     <div class="row mb-3">
@@ -234,8 +253,10 @@
                         <input name="linkedin_link" type="text" class="form-control" id="Linkedin" value="<?=set_value('linkedin_link', $row->linkedin_link)?>">
                       </div>
                        <?php if(!empty($errors['linkedin_link'])):?>
-                        <small class="text-danger"><?=$errors['linkedin_link']?></small>
+                        <small class="js-error-linkedin_link text-danger"><?=$errors['linkedin_link']?></small>
                       <?php endif;?>
+                        <small class="js-error-linkedin_link text-danger"></small>
+
                     </div>
 
                     <div class="js-progress-bar progress my-4 hide">
@@ -442,12 +463,20 @@
             var obj = JSON.parse(result);
             if(typeof obj == 'object') {
               if(typeof obj.errors == 'object') {
-                alert(obj.errors)
+              display_errors(obj.errors);
+              alert('Будь ласка виправте помилки')
+
             }else {
               alert('Дані вдало збережено')
+              window.location.reload();
             }
             }
           }
+          function display_errors(errors) {
 
+            for(key in errors) {
+              document.querySelector('.js-error-'+key).innerHTML = errors[key]
+            }
+          }
         </script>
 <?php $this->view('admin/admin-footer', $data);?>
