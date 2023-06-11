@@ -20,6 +20,20 @@ public function index()
     $this->view('admin/dashboard', $data);
 }
 
+public function courses($id=null) {
+
+    // Проверяем, авторизован ли пользователь
+    if (!Auth::logged_in()) {
+        message('Будь ласка увійдіть, щоб мати доступ до панелі адміністратора');
+        redirect('login');
+    }
+
+    $data = [];
+
+    $this->view('admin/courses', $data);
+
+}
+
 /**
  * Метод для отображения профиля администратора
  * @param int|null $id - идентификатор пользователя (по умолчанию null)
