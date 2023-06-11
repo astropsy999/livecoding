@@ -1,17 +1,23 @@
 <?php $this->view('admin/admin-header', $data);?>
+<div class="pagetitle d-flex flex-row align-center justify-content-between">
+              <h1>Мої курси</h1>
+              <button class="btn btn-info ml-2"><i class="bi bi-journal-plus"></i> Додати курс</button>
+              </div>
 <div class="card">
+
             <div class="card-body">
-              <h5 class="card-title">Table with stripped rows</h5>
+
 
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Категорія</th>
+                    <th scope="col">Ціна</th>
+                    <th scope="col">Основна тема</th>
+                    <th scope="col">Дата</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -21,35 +27,8 @@
                     <td>Designer</td>
                     <td>28</td>
                     <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
+                    <td>2016-05-25</td>
+
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
