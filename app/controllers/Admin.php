@@ -20,7 +20,7 @@ public function index()
     $this->view('admin/dashboard', $data);
 }
 
-public function courses($id=null) {
+public function courses($action=null, $id=null) {
 
     // Проверяем, авторизован ли пользователь
     if (!Auth::logged_in()) {
@@ -29,6 +29,8 @@ public function courses($id=null) {
     }
 
     $data = [];
+    $data['action'] = $action;
+    $data['id'] = $id;
 
     $this->view('admin/courses', $data);
 
