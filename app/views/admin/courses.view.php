@@ -11,18 +11,12 @@
                 </div>
                 <div class="col-md-12">
                   <select id="inputState" class="form-select">
-                    <option selected="">Категорія курсу...</option>
-                    <option>Розробка</option>
-                    <option>Бізнес</option>
-                    <option>Фінанси</option>
-                    <option>IT</option>
-                    <option>Дизайн</option>
-                    <option>Маркетінг</option>
-                    <option>Фото і відео</option>
-                    <option>Фітнес</option>
-                    <option>Музика</option>
-                    <option>Навчання</option>
-                    <option>Досі не знаю...</option>
+                    <option value=""selected="">Категорія курсу...</option>
+                    <?php if(!empty($categories)):?>
+                      <?php foreach($categories as $cat):?>
+                        <option value="<?=esc($cat->id)?>"><?=esc($cat->category)?></option>
+                      <?php endforeach;?>
+                    <?php endif;?>
                   </select>
                 </div>
 

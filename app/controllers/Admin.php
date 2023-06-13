@@ -32,6 +32,11 @@ public function courses($action=null, $id=null) {
     $data['action'] = $action;
     $data['id'] = $id;
 
+    if($action == 'add') {
+        $category = new Category();
+        $data['categories'] = $category->findAll('asc');
+    }
+
     $this->view('admin/courses', $data);
 
 }

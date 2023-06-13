@@ -82,6 +82,23 @@ class Model extends Database
 
 	}
 
+	public function findAll($order='desc')
+	{
+
+		$query = "SELECT * FROM ".$this->table." ORDER BY id $order ";
+
+
+		$res = $this->query($query);
+
+		if(is_array($res))
+		{
+			return $res;
+		}
+
+		return false;
+
+	}
+
 	public function first($data)
 	{
 
