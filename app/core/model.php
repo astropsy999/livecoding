@@ -99,7 +99,7 @@ class Model extends Database
 
 	}
 
-	public function first($data)
+	public function first($data, $order = 'desc')
 	{
 
 		$keys = array_keys($data);
@@ -111,7 +111,7 @@ class Model extends Database
 		}
 
  		$query = trim($query,"&& ");
-		$query .= " ORDER BY id desc LIMIT 1";
+		$query .= " ORDER BY id $order LIMIT 1";
 		$res = $this->query($query,$data);
 
 		if(is_array($res))

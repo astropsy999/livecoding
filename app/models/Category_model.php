@@ -4,7 +4,7 @@
  * Categories model
  */
 
- class Category extends Model
+ class Category_model extends Model
  {
 
     public $errors=[];
@@ -29,9 +29,9 @@
 
          if(empty($data['category']))
         {
-            $this->errors['category'] = 'Назва категорії обовʼязкове';
+            $this->errors['category'] = 'Назва категорії обовʼязкова';
         }else
-        if(!preg_match("/^[a-zA-Z \&\']$/", trim($data['category'])))
+        if(!preg_match("/^[a-zA-Z \&\ ]$/", trim($data['category'])))
         {
             $this->errors['category'] = 'Назва категорії може складатися тільки із літер та пробілів';
         }
